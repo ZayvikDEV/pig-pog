@@ -5,6 +5,8 @@ mixer.init()
 mixer.music.load("M.mp3")
 
 img_back = "F.jpg"
+img_rocket = "R.jpg"
+img_myach = "Y.png"
 
 font.init()
 font = font.SysFont('Arial', 40)
@@ -33,6 +35,12 @@ class Player(GameSprite):
             self.rect.x -= self.speed
         if keys[K_RIGHT] and self.rect.x < win_width - 80:
             self.rect.x += self.speed
+    def update_r(self):
+        keys = key.get_pressed()
+        if keys[K_LEFT] and self.rect.x > 5:
+            self.rect.x -= self.speed
+        if keys[K_RIGHT] and self.rect.x < win_width - 80:
+            self.rect.x += self.speed
     def fire(self):
         bullet = Bullet(img_bullet, self.rect.centerx, self.rect.top, 15, 20, -13)
         bullets.add(bullet)
@@ -42,6 +50,9 @@ win_height = 800
 display.set_caption("Shish")
 window = display.set_mode((win_width, win_height))
 background = transform.scale(image.load(img_back), (win_width, win_height))
+
+Ravo = Player(img_rocket, win_width - 40, 50, 30, 30, 20)
+Lavo = Player(img_rocket, win_width - 960, 50, 30, 30, 20)
 
 finish = False
 run = True 
